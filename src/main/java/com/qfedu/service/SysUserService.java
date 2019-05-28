@@ -1,11 +1,11 @@
 package com.qfedu.service;
 
-import java.util.List;
-import java.util.Map;
-
 import com.qfedu.entity.SysUser;
 import com.qfedu.vo.UserInfo;
 import com.qfedu.vo.VUserInfo;
+
+import java.util.List;
+import java.util.Map;
 
 public interface SysUserService {
 	
@@ -68,4 +68,10 @@ public interface SysUserService {
 	 * @return
 	 */
 	public Map<String, Object> findUsersBycons(int page, String usrName, int roleId);
+
+	/**
+	 * 查询所有的客户经理的信息
+	 * @return
+	 */
+	public List<SysUser> findAllManger();
 }

@@ -173,4 +173,13 @@
 		</where>
 		
 	</select>
+
+	<select id="findAllManager" resultMap="BaseResultMap">
+
+		select
+		<include refid="Base_Column_List"></include>
+		from sys_user
+		where usr_role_id = 3
+		and usr_flag = 1
+	</select>
 </mapper>

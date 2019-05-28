@@ -1,12 +1,5 @@
 package com.qfedu.service.impl;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.qfedu.dao.SysUserMapper;
@@ -14,6 +7,12 @@ import com.qfedu.entity.SysUser;
 import com.qfedu.service.SysUserService;
 import com.qfedu.vo.UserInfo;
 import com.qfedu.vo.VUserInfo;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Service
 public class SysUserServiceImpl implements SysUserService{
@@ -113,5 +112,10 @@ public class SysUserServiceImpl implements SysUserService{
 		return map;
 	}
 
-	
+	@Override
+	public List<SysUser> findAllManger() {
+		return userDao.findAllManager();
+	}
+
+
 }

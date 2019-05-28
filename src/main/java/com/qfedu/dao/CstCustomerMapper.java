@@ -13,4 +13,6 @@ public interface CstCustomerMapper {
     //  查找所有的客户信息
     List<VCustomer> findAll();
 
+    //  根据客户名查找该客户
+    CstCustomer findByCustName(String cuustName);
 }

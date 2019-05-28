@@ -1,5 +1,7 @@
 package com.qfedu.service;
 
+import com.qfedu.entity.CstCustomer;
+
 import java.util.Map;
 
 public interface CstCustomerService {
@@ -10,4 +12,10 @@ public interface CstCustomerService {
      * @return
      */
     public Map<String,Object> findAllCustomer(int page);
+
+    /**
+     *  插入一个客户信息
+     * @param cstCustomer
+     */
+    public void addCustomer(CstCustomer cstCustomer);
 }

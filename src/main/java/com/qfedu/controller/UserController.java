@@ -1,16 +1,16 @@
 package com.qfedu.controller;
 
-import java.util.Map;
-
+import com.qfedu.entity.SysUser;
+import com.qfedu.service.SysUserService;
+import com.qfedu.vo.JsonBean;
+import com.qfedu.vo.VUserInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.qfedu.entity.SysUser;
-import com.qfedu.service.SysUserService;
-import com.qfedu.vo.JsonBean;
-import com.qfedu.vo.VUserInfo;
+import java.util.List;
+import java.util.Map;
 @Controller
 @ResponseBody
 public class UserController {
@@ -63,5 +63,12 @@ public class UserController {
 		Map<String, Object> map = userService.findUsersBycons(page, usrName, roleId);
 		
 		return new JsonBean(1, map);
+	}
+
+	@RequestMapping("/user/findManger.do")
+	public JsonBean findAllManger(){
+		List<SysUser> users = userService.findAllManger();
+
+		return new JsonBean(1,users);
 	}
 }

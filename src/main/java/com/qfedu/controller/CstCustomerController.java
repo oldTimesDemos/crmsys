@@ -1,5 +1,6 @@
 package com.qfedu.controller;
 
+import com.qfedu.entity.CstCustomer;
 import com.qfedu.service.CstCustomerService;
 import com.qfedu.vo.JsonBean;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,5 +22,12 @@ public class CstCustomerController {
         Map<String, Object> map = cstCustomerService.findAllCustomer(page);
 
         return  new JsonBean(1,map);
+    }
+
+    @RequestMapping("/customer/add.do")
+    public JsonBean addCustomer(CstCustomer cstCustomer){
+        cstCustomerService.addCustomer(cstCustomer);
+
+        return new JsonBean(1,null);
     }
 }

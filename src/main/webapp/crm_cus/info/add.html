@@ -5,6 +5,7 @@
 <title>客户开发计划</title>
 <link href="../../css/stylesheet.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="../../js/javascript.js"></script>
+    <script type="text/javascript" src="../../js/jquery.js"></script>
 <style>
 	body{ margin:0;
 		  padding:0}
@@ -29,6 +30,7 @@
 <div style="padding:5px;">
   <div class="txt" style="padding-top:3px;" >当前位置：客户开发计划&nbsp;&gt;&nbsp;客户信息管理&nbsp;&gt;&nbsp;<a href="list.html">客户信息</a>&nbsp;&gt;&nbsp;编辑客户信息
     <hr class="hr1" />
+      <div class="operation_button">  <a href="javascript:addCuustomer()" title="添加">添加</a></div>
   </div>
   <div class="operation_button"> <a href="#" title="返回" onclick="back()">返回</a> </div>
   <div class="out_bg">
@@ -36,37 +38,67 @@
      <div style="margin:100px 0px 0px 300px">
      	 <form method="post" action="">
          <table border="0" cellpadding="0" cellspacing="0" class="table_input txt">
+             <tr>
+                 <td valign="top">客户名</td>
+                 <td><input type="text" name="custName"/></td>
+                 <td></td>
+                 <td></td>
+             </tr>
+
         <tr>
           <td width="126">地区</td>
-          <td width="411"><select></select></td>
+          <td width="411"><select name="custRegion">
+            <option value="北京">北京</option>
+              <option value="上海">上海</option>
+              <option value="广州">广州</option>
+              <option value="深圳">深圳</option>
+          </select></td>
           <td width="126">客户经理</td>
-          <td width="442"><select></select></td>
+          <td width="442"><select name="custManagerId" id="sid"></select></td>
         </tr>
         <tr>
           <td>客户等级</td>
-          <td><select></select></td>
+          <td><select name="custLevel">
+              <option value="1">战略合作伙伴</option>
+              <option value="2">普通合作伙伴</option>
+          </select></td>
           <td></td>
           <td></td>
         </tr>
         <tr>
           <td valign="top">客户满意度</td>
-          <td><select></select></td>
+          <td><select name="custSatity">
+              <option value="3">--请选择--</option>
+              <option value="1">一星</option>
+              <option value="2">两星</option>
+              <option value="3">三星</option>
+              <option value="4">四星</option>
+              <option value="5">五星</option>
+          </select></td>
           <td>客户信用等级</td>
-          <td><select></select></td>
+          <td><select name="custCredit">
+              <option value="3">--请选择--</option>
+              <option value="1">一星</option>
+              <option value="2">两星</option>
+              <option value="3">三星</option>
+              <option value="4">四星</option>
+              <option value="5">五星</option>
+
+          </select></td>
         </tr>
         
         <tr>
           <td valign="top">地址</td>
-          <td><input type="text"/></td>
+          <td><input type="text" name="custAddr"/></td>
           <td>邮政编码</td>
-          <td><input type="text"/></td>
+          <td><input type="text" name="custZip"/></td>
         </tr>
         
         <tr>
           <td valign="top">电话</td>
-          <td><input type="text"/></td>
+          <td><input type="text" name="custTel"/></td>
           <td>网址</td>
-          <td><input type="text"/></td>
+          <td><input type="text" name="custWebsite"/></td>
         </tr>
       </table>
          </form>
@@ -74,5 +106,46 @@
     </div>
   </div>
 </div>
+
+<script type="text/javascript">
+    $(function(){
+        $.ajax({
+            type:"get",
+            url:"/crmsys/user/findManger.do",
+            dataType:"json",
+            success:function(data){
+                if (data.code == 1){
+                    var infos = data.info;
+                    $(infos).each(function(){
+                   var html=' <option value="'+this.usrId+'">'+this.usrName+'</option>';
+                   $("#sid").append($(html));
+                    })
+
+                } else {
+                    alert(data.info);
+                }
+            }
+        })
+    })
+</script>
+
+<script type="text/javascript">
+    function addCuustomer(){
+        $.ajax({
+            type:"post",
+            url:"/crmsys/customer/add.do",
+            data:$("form").serialize(),
+            dataType:"json",
+            success:function(data){
+                if (data.code == 1){
+                    alert("添加成功");
+                    window.location.href="list.html";
+                } else{
+                    alert(data.info);
+                }
+            }
+        })
+    }
+</script>
 </body>
 </html>

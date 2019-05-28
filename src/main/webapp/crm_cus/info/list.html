@@ -141,11 +141,11 @@
       url:"/crmsys/customer/findAll.do?page="+page,
       dataType:"json",
       success:function(data){
+        var  a = 1;
         if (data.code ==1){
           $("tbody").empty();
           var infos = data.info.rows;
           $(infos).each(function(){
-            var  a = 1;
             var html = '<tr>';
             html +='<td>'+a+'</td>';
             html +='<td>'+this.custNo+'</td>';
@@ -157,40 +157,40 @@
             } else {
               html +='<td>普通伙伴</td>';
             }
-         html +=' <td><img title="编辑" src="../../images/hammer_screwdriver.png" class="op_button" onclick="" /><img title="联系人" src="../../images/user.ico" class="op_button" onclick="to()" /><img title="交往记录" src="../../images/bubble.ico" class="op_button" onclick="to()" /><img title="历史订单" src="../../images/document.ico" class="op_button" onclick="to()" /></td>';
+            html +=' <td><img title="编辑" src="../../images/hammer_screwdriver.png" class="op_button" onclick="" /><img title="联系人" src="../../images/user.ico" class="op_button" onclick="to()" /><img title="交往记录" src="../../images/bubble.ico" class="op_button" onclick="to()" /><img title="历史订单" src="../../images/document.ico" class="op_button" onclick="to()" /></td>';
             html +=' </tr>';
-            a++;
             $("tbody").append($(html));
-            var total = data.info.total;
-            var totalPage = Math.ceil(total / 5);
-
-            $(".total").empty();
-            var html1='<span>'+totalPage+'</span>';
-            $(".total").append($(html1));
-
-
-            $(".count").empty();
-            var html2='<span>'+total+'</span>';
-            $(".count").append($(html2))
-            var pno = $('.now').text();
-            //分页设置
-            $('.M-box').pagination({
-              pageCount: totalPage,  // 总页数
-              current:pno,//当前第几页
-              jump: true,  // 是否显示跳转相关元素
-              jumpBtn: 'go', // 跳转按钮显示文字
-              coping: true,    //是否显示首页末页
-              homePage: '首页',
-              endPage: '末页',
-              prevContent: '<<',  // 上一页功能 显示文字信息
-              nextContent: '>>',
-              callback:function(index){
-                //	index.getCurrent() 获取当前要是用的页码
-                $('.now').text(index.getCurrent());
-                loadData(index.getCurrent());//获取当前页
-              }
-            });
+            a++;
           })
+          var total = data.info.total;
+          var totalPage = Math.ceil(total / 5);
+
+          $(".total").empty();
+          var html1='<span>'+totalPage+'</span>';
+          $(".total").append($(html1));
+
+
+          $(".count").empty();
+          var html2='<span>'+total+'</span>';
+          $(".count").append($(html2))
+          var pno = $('.now').text();
+          //分页设置
+          $('.M-box').pagination({
+            pageCount: totalPage,  // 总页数
+            current:pno,//当前第几页
+            jump: true,  // 是否显示跳转相关元素
+            jumpBtn: 'go', // 跳转按钮显示文字
+            coping: true,    //是否显示首页末页
+            homePage: '首页',
+            endPage: '末页',
+            prevContent: '<<',  // 上一页功能 显示文字信息
+            nextContent: '>>',
+            callback:function(index){
+              //	index.getCurrent() 获取当前要是用的页码
+              $('.now').text(index.getCurrent());
+              loadData(index.getCurrent());//获取当前页
+            }
+          });
         }else{
           alert(data.info);
         }

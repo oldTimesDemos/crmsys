@@ -1,12 +1,11 @@
 package com.qfedu.dao;
 
-import java.util.List;
-
-import org.apache.ibatis.annotations.Param;
-
 import com.qfedu.entity.SysUser;
 import com.qfedu.vo.UserInfo;
 import com.qfedu.vo.VUserInfo;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface SysUserMapper {
     int deleteByPrimaryKey(Integer usrId);
@@ -61,4 +60,10 @@ public interface SysUserMapper {
      * @return
      */
     List<VUserInfo> selectUserByNameOrRoleId(@Param("usrName") String usrName,@Param("roleId") int roleId);
+
+    /**
+     *  查询所有的客户经理的信息
+     * @return
+     */
+    List<SysUser> findAllManager();
 }

@@ -183,4 +183,8 @@
   INNER JOIN sys_user s
   on c.cust_manager_id = s.usr_id
   </select>
+
+  <select id="findByCustName" parameterType="string" resultMap="BaseResultMap">
+    select  * from cst_customer where cust_name = #{custName}
+  </select>
 </mapper>
