@@ -175,4 +175,12 @@
       </if>
     </trim>
   </insert>
+
+  <select id="findAll" resultType="com.qfedu.vo.VCustomer">
+  SELECT c.cust_no,c.cust_name,c.cust_region,c.cust_level,
+  s.usr_name
+  FROM cst_customer c
+  INNER JOIN sys_user s
+  on c.cust_manager_id = s.usr_id
+  </select>
 </mapper>
